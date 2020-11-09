@@ -4,7 +4,13 @@ include_once("classes\database.php");
 use classes\database;
 
 $db = new database("localhost", "root", "", "todos",3306);
-$menuStuffs=$db->getMenuStuffs();
+
+if(isset($_SESSION['userId'])){
+    $menuStuffs=$db->getMenuStuffs($_SESSION['userId']);
+}else{
+    $menuStuffs=$db->getMenuStuffs($_SESSION['userId']);
+}
+
 ?>
 
 <div class="inner">

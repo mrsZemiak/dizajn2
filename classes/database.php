@@ -81,12 +81,20 @@ class database
      * @return array
      */
 
-    public function getMenuStuffs()
+    public function getMenuStuffs($session)
     {
-        $sql = "SELECT * FROM menu ORDER BY id";
-        $stmt = $this->connection->prepare($sql);
-        $stmt->execute();
-        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        if(isset($session)){
+            $sql = "SELECT * FROM menu WHERE menu.logged_in == 1 ORDER BY id";
+            $stmt = $this->connection->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        }else{
+            $sql = "SELECT * FROM menu ORDER BY id";
+            $stmt = $this->connection->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        }
+
     }
 
 
