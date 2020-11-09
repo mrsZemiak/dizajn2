@@ -21,7 +21,7 @@ if(!empty($_SESSION['userId'])){
         foreach ($menuStuffs as $key => $menuStuff){
         ?>
         <ul>
-            <li><a href="#<?php echo $menuStuff['path'];?>">
+            <li><a href="<?php echo $menuStuff['path'];?>">
                     <i class="fas <?php echo $menuStuff['icon']; ?> nav-icon"></i>
                   <?php echo $menuStuff['name'];
                         ?>

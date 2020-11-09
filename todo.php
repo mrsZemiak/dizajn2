@@ -1,4 +1,4 @@
-<html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
     <?php include_once("header.php")?>
 <?php include("classes/database.php");
@@ -26,14 +26,11 @@ use classes\database;
     <section id="history" class="wrapper style1 fullscreen fade-up">
     </section>
 
-    <section id="logout" class="wrapper style1 fullscreen fade-up">
-        <?php
-        session_start();
-        unset($_SESSION["nome"]);  // where $_SESSION["nome"] is your own variable. if you do not have one use only this as follow **session_unset();**
-        header("Location: index.php");
-        ?>
+    <section id="logout" class="wrapper style1 fullscreen fade-up" >
+        <p id="logout"></p>
     </section>
 </div>
+
 <footer id="footer" class="wrapper style1-alt">
     <?php include_once("footer.php");?>
 </footer>

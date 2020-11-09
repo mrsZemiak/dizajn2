@@ -4,7 +4,7 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 	<head>
 		<?php include_once("header.php")?>
         <?php include("classes/database.php");
@@ -46,7 +46,9 @@
                             </ul>
                             <ul class="actions">
                                 <li> <p>Already in your own potatoes? <a href="#one">Sign in!</a></p> </li>
+                                <li> <p>Here you can <a href="logout.php">Logout</a></p> </li>
 							</ul>
+
 						</div>
 					</section>
 

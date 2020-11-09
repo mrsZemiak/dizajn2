@@ -170,7 +170,8 @@ class database
                         $_SESSION['userUID'] = $row['meno'];
 //                        $message = "System in";
 //                        echo "<script type='text/javascript'>alert('$message');</script>";
-                        header('Location: todo.php');
+                            header("location: todo.php");
+                            exit();
                     }else{
                         $message = "Nesprávne heslo";
                         echo "<script type='text/javascript'>alert('$message');</script>";
@@ -184,5 +185,6 @@ class database
             }
         }
     }
+
 }
         ?>
