@@ -27,6 +27,11 @@ use classes\database;
     </section>
 
     <section id="logout" class="wrapper style1 fullscreen fade-up">
+        <?php
+        session_start();
+        unset($_SESSION["nome"]);  // where $_SESSION["nome"] is your own variable. if you do not have one use only this as follow **session_unset();**
+        header("Location: index.php");
+        ?>
     </section>
 </div>
 <footer id="footer" class="wrapper style1-alt">

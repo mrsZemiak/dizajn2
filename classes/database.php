@@ -83,13 +83,14 @@ class database
 
     public function getMenuStuffs($session)
     {
-        if(isset($session)){
-            $sql = "SELECT * FROM menu WHERE menu.logged_in == 1 ORDER BY id";
+        if(!empty($session)){
+            $sql = "SELECT * FROM menu WHERE menu.logged_in = 1";
             $stmt = $this->connection->prepare($sql);
             $stmt->execute();
             return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
         }else{
-            $sql = "SELECT * FROM menu ORDER BY id";
+            $sql = "SELECT * FROM menu WHERE menu.logged_in = 0";
             $stmt = $this->connection->prepare($sql);
             $stmt->execute();
             return $stmt->fetchAll(\PDO::FETCH_ASSOC);
@@ -164,11 +165,12 @@ class database
                         echo "<script type='text/javascript'>alert('$message');</script>";
                     }
                     elseif ($pwdCheck == true){
-                        //session_start();
+                       // session_start();
                         $_SESSION['userId'] = $row['idusers'];
                         $_SESSION['userUID'] = $row['meno'];
-                        $message = "System in";
-                        echo "<script type='text/javascript'>alert('$message');</script>";
+//                        $message = "System in";
+//                        echo "<script type='text/javascript'>alert('$message');</script>";
+                        header('Location: todo.php');
                     }else{
                         $message = "Nesprávne heslo";
                         echo "<script type='text/javascript'>alert('$message');</script>";

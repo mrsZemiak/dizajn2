@@ -5,10 +5,11 @@ use classes\database;
 
 $db = new database("localhost", "root", "", "todos",3306);
 
-if(isset($_SESSION['userId'])){
-    $menuStuffs=$db->getMenuStuffs($_SESSION['userId']);
+
+if(!empty($_SESSION['userId'])){
+    $menuStuffs=$db->getMenuStuffs(true);
 }else{
-    $menuStuffs=$db->getMenuStuffs($_SESSION['']);
+    $menuStuffs=$db->getMenuStuffs(false);
 }
 
 ?>

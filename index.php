@@ -56,7 +56,7 @@
                         <h2>Sign In</h2>
                         <div class="split style1">
                             <section>
-                                <form action="todo.php" method="post">
+                                <form action="index.php" method="post">
                                     <div class="fields">
                                         <div class="field half">
                                             <label for="email">Email</label>
