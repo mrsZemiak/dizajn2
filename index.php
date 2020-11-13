@@ -17,7 +17,6 @@
                 $variable->register($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['password']);
          }
         }
-       // $login = new database("localhost", "root", "", "todos",3306);
         if ($_SERVER['REQUEST_METHOD']== 'POST'){
             if (!empty($_POST['email'])){
                 $variable->login($_POST['email'],$_POST['password']);
@@ -46,7 +45,6 @@
                             </ul>
                             <ul class="actions">
                                 <li> <p>Already in your own potatoes? <a href="#one">Sign in!</a></p> </li>
-                                <li> <p>Here you can <a href="logout.php">Logout</a></p> </li>
 							</ul>
 
 						</div>
