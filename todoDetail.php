@@ -2,19 +2,19 @@
 <html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
     <?php include_once("header.php")?>
-<?php include("classes/database.php");
-use classes\database;
+    <?php include("classes/database.php");
+    use classes\database;
     $variable = new database("localhost", "root", "", "todos",3306);
-    if (isset($_POST['title'])) {
-        if (!empty($_POST['title'])) {
-            $variable->addTask($_POST['title']);
+    $id_todolists= $_GET['id'];
+
+    if (isset($_POST['task'])) {
+        if (!empty($_POST['task'])) {
+            $variable->addTaskForList($_POST['task'],$id_todolists);
         }
     }
-    $todolists = $variable->displayToDo($_SESSION['userId']);
+    $tasks = $variable->displayTasks($id_todolists);
 
-?>
-
-
+    ?>
 </head>
 <body class="is-preload">
 
@@ -27,33 +27,33 @@ use classes\database;
 <div id="wrapper">
     <section id="yourtodo" class="wrapper style1-alt fullscreen fade-up">
         <div class="inner">
-            <h2>Here goes your todo</h2>
-                <section>
-                <form method="post" action="todo.php">
+            <h2>Add your task to your todo</h2>
+            <section>
+                <form method="post" action="todoDetail.php?id=<?php echo $id_todolists; ?>">
                     <div class="fields">
                         <div class="field quarter"
-                        <label for="title">Name of the PotaToDo</label>
-                        <input type="text" name="title" id="title" required>
+                        <label for="task">Name of the PotaToDo</label>
+                        <input type="text" name="task" id="task" required>
                     </div>
-                        </div>
-                <ul class="actions">
-                    <li><button type="submit"> Create new Potato</button></li>
-                </ul>
-                </form>
-                </section>
         </div>
+        <ul class="actions">
+            <li><button type="submit"> Create new Task</button></li>
+        </ul>
+        </form>
     </section>
+</div>
+</section>
 
 <section id="todos" class="wrapper style1 fullscreen fade-up">
     <div class="inner">
-        <h2>Your Todolists</h2>
-        <?php if($todolists){
-        foreach ($todolists as $key => $todolist){ ?>
-        <div class="row"> <p><a href="todoDetail.php?id=<?php echo $todolist['id_todolists']; ?>" style="color: white;"><?php echo $todolist['title'];?></a></p></div>
+        <h2>Your Tasks</h2>
+        <?php if($tasks){
+            foreach ($tasks as $key => $task){ ?>
+                <div class="row"> <p><a href="" style="color: white;"><?php echo $task['task'];?></a></p></div>
 
-       <?php }} else{ ?>
-            <h3>Nemáte žiaden totolist, musíte si nejaký vytvoriť</h3>
-       <?php }?>
+            <?php }} else{ ?>
+            <h3>Nemáte žiaden task, musíte si nejaký vytvoriť</h3>
+        <?php }?>
     </div>
 </section>
 
@@ -81,9 +81,9 @@ use classes\database;
     </section>
 -->
 
-    <section id="logout" class="wrapper style1 fullscreen fade-up" >
-        <p id="logout"></p>
-    </section>
+<section id="logout" class="wrapper style1 fullscreen fade-up" >
+    <p id="logout"></p>
+</section>
 </div>
 
 

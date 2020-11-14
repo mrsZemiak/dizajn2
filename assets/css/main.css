@@ -5,6 +5,16 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
+.container{
+	padding:20px !important;
+	width:100%;
+	background-color:white !important;
+	border-radius: 5px;
+}
+.container:hover{
+	cursor:pointer;
+}
+
 
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
@@ -334,6 +344,7 @@ input, select, textarea {
 		display: flex;
 		flex-wrap: wrap;
 		box-sizing: border-box;
+		background-color:white !important;
 		align-items: stretch;
 	}
 

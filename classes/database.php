@@ -201,30 +201,31 @@ class database
         $stmt->execute();
     }
 
-                public function addTodo($task)
+                public function addTaskForList($task,$id_list)
     {
         $link = mysqli_connect('localhost', 'root', '', 'todos', 3306);
-        $task = $task;
 
 
-                $stmt = $link->prepare("INSERT INTO tasks (task, id_todo) VALUES('".$task."','".$_SESSION['userId']."')");
+                $stmt = $link->prepare("INSERT INTO tasks (task, id_todo) VALUES('".$task."','".$id_list."')");
                 $stmt->execute();
        }
 
 
 
-    public function displayToDo(){
+    public function displayToDo($id){
 // connect to database
-$link = mysqli_connect('localhost', 'root', '', 'todos', 3306);
-$display = mysqli_query($link, "SELECT * FROM todolists");
-
-if ($display) {
-    return $display;
-    $task = mysqli_query($link, "SELECT tasks.task FROM tasks WHERE tasks.id_todo = ?");
-    return $task;
+        $sql = "SELECT * FROM todolists WHERE idusers = $id";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 }
-
-}
+    public function displayTasks($id){
+// connect to database
+        $sql = "SELECT * FROM tasks WHERE id_todo = $id";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
 
 
 }
