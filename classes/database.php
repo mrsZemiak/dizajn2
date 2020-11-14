@@ -191,40 +191,38 @@ class database
         }
     }
 
-    public function addTask($title, $task){
-        // initialize errors variable
-        $errors = "";
-
-        // connect to database
+    public function addTask($title)
+    {
         $link = mysqli_connect('localhost', 'root', '', 'todos', 3306);
+        $title = $title;
 
-        // insert a quote if submit button is clicked
 
-            if (empty($title) || empty($task)) {
-                echo $errors = "You must fill in the task";
-            }else{
-                $title = $title;
-                $task = $task;
-                $sql1 = "INSERT INTO tasks (title) VALUES ('$title')";
-                $sql = "INSERT INTO tasks (task) VALUES ('$task')";
-                mysqli_select_db($link, 'todos');
-                $retval = mysqli_query($link, $sql1);
-                $retval1= mysqli_query($link,$sql);
-                echo $retval, $retval1;
+        $stmt = $link->prepare("INSERT INTO todolists (title,idusers) VALUES('" . $title . "','" . $_SESSION['userId'] . "')");
+        $stmt->execute();
+    }
 
-              //  header('location: index.php');
-            }if (isset($errors)) {
-            echo $errors;
-        }
-        }
+                public function addTodo($task)
+    {
+        $link = mysqli_connect('localhost', 'root', '', 'todos', 3306);
+        $task = $task;
+
+
+                $stmt = $link->prepare("INSERT INTO tasks (task, id_todo) VALUES('".$task."','".$_SESSION['userId']."')");
+                $stmt->execute();
+       }
+
+
 
     public function displayToDo(){
 // connect to database
 $link = mysqli_connect('localhost', 'root', '', 'todos', 3306);
-$display = mysqli_query($link, "SELECT task.id_task, task.task, todolists.title FROM `task`INNER JOIN todolists 
-ON task.id_todo = todolists.id ORDER BY id_task ASC");
+$display = mysqli_query($link, "SELECT * FROM todolists");
 
-return $display;
+if ($display) {
+    return $display;
+    $task = mysqli_query($link, "SELECT tasks.task FROM tasks WHERE tasks.id_todo = ?");
+    return $task;
+}
 
 }
 
