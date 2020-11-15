@@ -16,79 +16,51 @@ use classes\database;
 
 
 </head>
-<body class="is-preload">
+    <body class="is-preload">
 
 <!-- Sidebar -->
-<section id="sidebar">
-    <?php include_once("nav.php");?>
-</section>
+        <section id="sidebar">
+        <?php include_once("nav.php");?>
+        </section>
 
 <!-- Wrapper -->
-<div id="wrapper">
-    <section id="yourtodo" class="wrapper style1-alt fullscreen fade-up">
-        <div class="inner">
-            <h2>Here goes your todo</h2>
-                <section>
-                <form method="post" action="todo.php">
-                    <div class="fields">
-                        <div class="field quarter"
-                        <label for="title">Name of the PotaToDo</label>
-                        <input type="text" name="title" id="title" required>
-                    </div>
-                        </div>
-                <ul class="actions">
-                    <li><button type="submit"> Create new Potato</button></li>
-                </ul>
-                </form>
-                </section>
-        </div>
-    </section>
+        <div id="wrapper">
 
-<section id="todos" class="wrapper style1 fullscreen fade-up">
-    <div class="inner">
-        <h2>Your Todolists</h2>
-        <?php if($todolists){
-        foreach ($todolists as $key => $todolist){ ?>
-        <div class="row"> <p><a href="todoDetail.php?id=<?php echo $todolist['id_todolists']; ?>" style="color: white;"><?php echo $todolist['title'];?></a></p></div>
-
-       <?php }} else{ ?>
-            <h3>Nemáte žiaden totolist, musíte si nejaký vytvoriť</h3>
-       <?php }?>
-    </div>
-</section>
-
-
-
-
-<!--
-    <section id="todos" class="wrapper style1 fullscreen fade-up">
-        <div class="inner">
-            <h2>Here goes your todo</h2>
-            <section>
-                <form method="post" action="todo.php">
-                    <div class="fields">
-                        <div class="field half">
-                            <label for="task">new task</label>
-                            <input type="text" name="task" id="task" required/>
-                        </div>
-                    </div>
-                    <ul class="actions">
-                        <li><input type="submit" name="add" class="button" value="Add"/></li>
-                    </ul>
-                </form>
+            <section id="todos" class="wrapper style1 fullscreen fade-up">
+                 <div class="inner">
+                    <h2>Your Todolists</h2>
+                        <?php if($todolists){
+                            foreach ($todolists as $key => $todolist){ ?>
+                             <div id="row">
+                                 <p><a href="todoDetail.php?id=<?php echo $todolist['id_todolists']; ?>" style="color: white;"><?php echo $todolist['title'];?></a></p>
+                             </div>
+                            <?php }} else{ ?>
+                            <h3>Nemáte žiaden totolist, musíte si nejaký vytvoriť</h3>
+                            <?php }?>
+                 </div>
             </section>
-        </div>
-    </section>
--->
 
-    <section id="logout" class="wrapper style1 fullscreen fade-up" >
-        <p id="logout"></p>
-    </section>
-</div>
+            <section id="newtodo" class="wrapper style1-alt fullscreen fade-up">
+            <div class="inner">
+                    <h2>Here goes your todo</h2>
+                     <section>
+                         <form method="post" action="todo.php">
+                             <div class="fields">
+                                 <div class="field half">
+                                        <label for="title">Name of the PotaToDo</label>
+                                        <input type="text" name="title" id="title" required>
+                                 </div>
+                             </div>
+                            <ul class="actions">
+                             <li><button type="submit"> Create new Potato</button></li>
+                            </ul>
+                         </form>
+                    </section>
+            </div>
+            </section>
 
-
-<footer id="footer" class="wrapper style1-alt">
-    <?php include_once("footer.php");?>
-</footer>
+    <footer id="footer" class="wrapper style1-alt">
+        <?php include_once("footer.php");?>
+    </footer>
 </body>
 </html>

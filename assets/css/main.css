@@ -1987,6 +1987,16 @@ input, select, textarea {
 				.button:hover:active:after {
 					opacity: 0.1;
 				}
+/* Create a custom checkbox */
+.button.checkmark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 25px;
+	width: 25px;
+	background-color: #eee;
+}
+
 
 /* Features */
 

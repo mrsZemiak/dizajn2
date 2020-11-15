@@ -210,23 +210,19 @@ class database
                 $stmt->execute();
        }
 
-
-
     public function displayToDo($id){
 // connect to database
-        $sql = "SELECT * FROM todolists WHERE idusers = $id";
+        $sql = "SELECT * FROM todolists WHERE idusers =$id";
         $stmt = $this->connection->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 }
     public function displayTasks($id){
 // connect to database
-        $sql = "SELECT * FROM tasks WHERE id_todo = $id";
+        $sql = "SELECT * FROM tasks WHERE id_todo =$id";
         $stmt = $this->connection->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
-
-
 }
 ?>
