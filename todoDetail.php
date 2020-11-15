@@ -12,6 +12,17 @@
             $variable->addTaskForList($_POST['task'],$id_todolists);
         }
     }
+    if (isset($_POST['delete'])) {
+            if($variable->deleteTask($_POST['delete'])){
+                header('Location: todoDetail.php?id='.$id_todolists);
+            }
+    }
+    if (isset($_POST['complete'])) {
+        if($variable->completeTask($_POST['complete'])){
+            header('Location: todoDetail.php?id='.$id_todolists);
+        }
+    }
+
     $tasks = $variable->displayTasks($id_todolists);
 
     ?>
@@ -79,12 +90,37 @@
                     </div>
                 <div id="row">
                     <?php if($tasks){
-                    foreach ($tasks as $key => $task){ ?>
-                        <button class="checkmark"></button>
-                    <label for="task" ><?php echo $task['task'];?></label>
-                    <li> <a href="todo.php">Update</a></li>
+                    foreach ($tasks as $key => $task){
+                        if($task['checked']==0){
+                        ?>
 
-                    <?php }} else{ ?>
+                            <div style="display:flex; ">
+                    <p><?php echo $task['task']; ?></p>
+                                <div style="margin-left:auto; display:flex;">
+                                    <form action="todoDetail.php?id=<?php echo $id_todolists ?>" method="post">
+                                        <input type="hidden" name="delete" value="<?php echo $task['id_task']; ?>" />
+                        <button type="submit"><i class="fas fa-trash"></i></button>
+                                    </form>
+
+                                    <form action="todoDetail.php?id=<?php echo $id_todolists ?>" method="post">
+                                        <input type="hidden" name="complete" value="<?php echo $task['id_task']; ?>" />
+                            <button type="submit"><i class="fas fa-check"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </form>
+                    <?php }else{ ?>
+                                <div style="display:flex; ">
+                                    <p><s><?php echo $task['task']; ?></s></p>
+                                    <div style="margin-left:auto; display:flex;">
+                                        <form action="todoDetail.php?id=<?php echo $id_todolists ?>" method="post">
+                                            <input type="hidden" name="delete" value="<?php echo $task['id_task']; ?>" />
+                                            <button type="submit"><i class="fas fa-trash"></i></button>
+                                        </form>
+                                    </div>
+                                </div>
+                        <?php }
+                    }} else{ ?>
                         <h3>Nemáte žiaden task, musíte si nejaký vytvoriť</h3>
                         <ul class="actions">
                             <li> <p>Zero potatoes. <a href="#todos">Add something</a></p> </li>

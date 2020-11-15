@@ -219,10 +219,20 @@ class database
 }
     public function displayTasks($id){
 // connect to database
-        $sql = "SELECT * FROM tasks WHERE id_todo =$id";
+        $sql = "SELECT * FROM tasks WHERE id_todo =".$id." ORDER BY created DESC";
         $stmt = $this->connection->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+    public function deleteTask ($id){
+        $sql = "DELETE FROM tasks WHERE id_task = ".$id;
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute();
+    }
+    public function completeTask ($id){
+        $sql = "UPDATE tasks SET checked = 1 WHERE id_task = ".$id;
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute();
     }
 }
 ?>
