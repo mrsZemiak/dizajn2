@@ -211,14 +211,15 @@ class database
        }
 
     public function displayToDo($id){
-// connect to database
-        $sql = "SELECT * FROM todolists WHERE idusers =$id";
+
+       $sql = "SELECT * FROM todolists WHERE idusers =$id";
+
         $stmt = $this->connection->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 }
     public function displayTasks($id){
-// connect to database
+
         $sql = "SELECT * FROM tasks WHERE id_todo =".$id." ORDER BY created DESC";
         $stmt = $this->connection->prepare($sql);
         $stmt->execute();
@@ -229,10 +230,22 @@ class database
         $stmt = $this->connection->prepare($sql);
         $stmt->execute();
     }
+    public function deleteTodo ($id){
+        $table="";
+        $sql = "DELETE FROM todolists WHERE idtodo = ".$id;
+        $sql .= "DELETE FROM tasks WHERE id_todo = ".$id;
+        $stmt = $this->connection->prepare($sql);
+        $table->foreign('id_todo')->references('idtodo')->on('tasks')->onDelete('cascade');
+        $stmt2 = $this->connection->prepare($table);
+        $stmt->execute();
+        $stmt2->execute();
+
+    }
     public function completeTask ($id){
         $sql = "UPDATE tasks SET checked = 1 WHERE id_task = ".$id;
         $stmt = $this->connection->prepare($sql);
         $stmt->execute();
     }
+
 }
 ?>

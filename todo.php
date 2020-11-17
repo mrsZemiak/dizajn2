@@ -5,12 +5,21 @@
 <?php include("classes/database.php");
 use classes\database;
     $variable = new database("localhost", "root", "", "todos",3306);
+
     if (isset($_POST['title'])) {
         if (!empty($_POST['title'])) {
             $variable->addTask($_POST['title']);
         }
     }
     $todolists = $variable->displayToDo($_SESSION['userId']);
+
+    if (isset($_POST['delete'])) {
+        if ($variable->deleteTodo($_POST['delete'])) {
+            header('Location: todo.php');
+        }
+    }
+
+
 
 ?>
 
@@ -25,39 +34,49 @@ use classes\database;
 
 <!-- Wrapper -->
         <div id="wrapper">
+            <section id="todos" class="wrapper style1-alt fullscreen fade-up">
+                <div class="inner">
+                    <h2><i style="display: inline-flex; margin-right: 10px" class="fas fa-plus-square"></i>New PotaToDo</h2>
+                    <section>
+                        <form method="post" action="todo.php">
+                            <div class="fields">
+                                <div class="field half">
 
-            <section id="todos" class="wrapper style1 fullscreen fade-up">
-                 <div class="inner">
-                    <h2>Your Todolists</h2>
-                        <?php if($todolists){
-                            foreach ($todolists as $key => $todolist){ ?>
-                             <div id="row">
-                                 <p><a href="todoDetail.php?id=<?php echo $todolist['id_todolists']; ?>" style="color: white;"><?php echo $todolist['title'];?></a></p>
-                             </div>
-                            <?php }} else{ ?>
-                            <h3>Nemáte žiaden totolist, musíte si nejaký vytvoriť</h3>
-                            <?php }?>
-                 </div>
-            </section>
-
-            <section id="newtodo" class="wrapper style1-alt fullscreen fade-up">
-            <div class="inner">
-                    <h2>Here goes your todo</h2>
-                     <section>
-                         <form method="post" action="todo.php">
-                             <div class="fields">
-                                 <div class="field half">
-                                        <label for="title">Name of the PotaToDo</label>
-                                        <input type="text" name="title" id="title" required>
-                                 </div>
-                             </div>
+                                    <input type="text" name="title" id="title" placeholder="name, for example: shopping list" required="">
+                                </div>
+                            </div>
                             <ul class="actions">
-                             <li><button type="submit"> Create new Potato</button></li>
+                                <li><button type="submit"> Create new Potato</button></li>
                             </ul>
-                         </form>
+                        </form>
                     </section>
-            </div>
+                    <section class="wrapper style1 fade-up">
+                        <div class="inner">
+                            <h2>Your Todolists</h2>
+                            <?php if($todolists){
+                                foreach ($todolists as $key => $todolist){ ?>
+                                    <div style="margin-left:auto; display:flex;">
+                                        <form action="todo.php" method="post">
+                                            <input type="hidden" name="delete" value="<?php echo $todolist['idtodo']; ?>" />
+                                            <button type="submit"><i class="fas fa-trash"></i></button>
+                                        </form>
+                                    </div>
+                                    <div id="row">
+                                        <p><i style="display: inline-flex; margin-right: 10px" class="fas fa-tasks"></i><a href="todoDetail.php?id=<?php echo $todolist['idtodo']; ?>" style="color: white;"><?php echo $todolist['title'];?></a></p>
+
+                                    </div>
+
+                                <?php }} else{ ?>
+                                <h3>Nemáte žiaden totolist, musíte si nejaký vytvoriť</h3>
+                            <?php }?>
+                        </div>
+                    </section>
+
+                </div>
             </section>
+
+
+
 
     <footer id="footer" class="wrapper style1-alt">
         <?php include_once("footer.php");?>

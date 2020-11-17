@@ -44,7 +44,7 @@
 								<li><a href="#two" class="button scrolly">Sign Up!</a></li>
                             </ul>
                             <ul class="actions">
-                                <li> <p>Already in your own potatoes? <a href="#one">Sign in!</a></p> </li>
+                                <li> <p>Already in your own potatoes? <a href="#one" class="scrolly">Sign in!</a></p> </li>
 							</ul>
 
 						</div>
@@ -146,9 +146,9 @@
                                                 <h3>Social</h3>
                                                 <ul class="icons">
                                                     <li><a href="https://www.facebook.com/UKFvNitre" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-                                                    <li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-                                                    <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-                                                    <li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+                                                    <li><a href="https://github.com/mrsZemiak/dizajn2" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+                                                    <li><a href="https://www.instagram.com/informatikavnitre/?hl=sk" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+                                                    <li><a href="https://www.linkedin.com/school/constantine-the-philosopher-university-in-nitra/" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
                                                 </ul>
                                             </li>
                                     </ul>
