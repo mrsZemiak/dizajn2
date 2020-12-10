@@ -11,6 +11,11 @@
         use classes\database;
         ?>
         <?php
+
+        if(isset($_SESSION['userId'])){
+            header("location: todo.php");
+        }
+
         $variable = new database("localhost", "root", "", "todos",3306);
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
            if (!empty($_POST['firstname'])){

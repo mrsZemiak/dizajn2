@@ -212,7 +212,7 @@ class database
 
     public function displayToDo($id){
 
-       $sql = "SELECT * FROM todolists WHERE idusers =$id";
+       $sql = "SELECT * FROM todolists WHERE idusers =".$id;
 
         $stmt = $this->connection->prepare($sql);
         $stmt->execute();
@@ -231,14 +231,16 @@ class database
         $stmt->execute();
     }
     public function deleteTodo ($id){
-        $table="";
         $sql = "DELETE FROM todolists WHERE idtodo = ".$id;
-        $sql .= "DELETE FROM tasks WHERE id_todo = ".$id;
-        $stmt = $this->connection->prepare($sql);
-        $table->foreign('id_todo')->references('idtodo')->on('tasks')->onDelete('cascade');
-        $stmt2 = $this->connection->prepare($table);
+        $sql2 = "DELETE FROM tasks WHERE id_todo = ".$id;
+
+        $stmt = $this->connection->prepare($sql2);
+        $stmt2 = $this->connection->prepare($sql);
+
+
         $stmt->execute();
         $stmt2->execute();
+       return $stmt2;
 
     }
     public function completeTask ($id){

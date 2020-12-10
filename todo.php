@@ -14,16 +14,12 @@ use classes\database;
     $todolists = $variable->displayToDo($_SESSION['userId']);
 
     if (isset($_POST['delete'])) {
+
         if ($variable->deleteTodo($_POST['delete'])) {
             header('Location: todo.php');
         }
     }
-
-
-
 ?>
-
-
 </head>
     <body class="is-preload">
 
@@ -53,22 +49,24 @@ use classes\database;
                     <section class="wrapper style1 fade-up">
                         <div class="inner">
                             <h2>Your Todolists</h2>
+                            <div id="row">
                             <?php if($todolists){
                                 foreach ($todolists as $key => $todolist){ ?>
-                                    <div style="margin-left:auto; display:flex;">
-                                        <form action="todo.php" method="post">
-                                            <input type="hidden" name="delete" value="<?php echo $todolist['idtodo']; ?>" />
-                                            <button type="submit"><i class="fas fa-trash"></i></button>
-                                        </form>
-                                    </div>
-                                    <div id="row">
+                                 <div style="display: flex">
                                         <p><i style="display: inline-flex; margin-right: 10px" class="fas fa-tasks"></i><a href="todoDetail.php?id=<?php echo $todolist['idtodo']; ?>" style="color: white;"><?php echo $todolist['title'];?></a></p>
+                                <div style="margin-left:auto; display:inline-flex;">
+                                    <form action="todo.php" method="post">
+                                        <input type="hidden" name="delete" id="delete" value="<?php echo $todolist['idtodo']; ?>" />
+                                        <button type="submit" onclick="return confirm('Are you sure, that you want to delete this todolist? ')" class="small"><i class="fas fa-trash""></i></button>
 
-                                    </div>
+                                    </form>
+                                </div>
+                                 </div>
 
                                 <?php }} else{ ?>
                                 <h3>Nemáte žiaden totolist, musíte si nejaký vytvoriť</h3>
                             <?php }?>
+                            </div>
                         </div>
                     </section>
 

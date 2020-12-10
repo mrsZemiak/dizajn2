@@ -78,12 +78,12 @@
                                 <div style="margin-left:auto; display:flex;">
                                     <form action="todoDetail.php?id=<?php echo $id_todolists ?>" method="post">
                                         <input type="hidden" name="delete" value="<?php echo $task['id_task']; ?>" />
-                        <button type="submit"><i class="fas fa-trash"></i></button>
+                                        <button type="submit" class="small" onclick="return confirm('Are you sure, that you want to delete this task?')"><i class="fas fa-trash"></i></button>
                                     </form>
 
                                     <form action="todoDetail.php?id=<?php echo $id_todolists ?>" method="post">
                                         <input type="hidden" name="complete" value="<?php echo $task['id_task']; ?>" />
-                            <button type="submit"><i class="fas fa-check"></i></button>
+                            <button type="submit" class="small"><i class="fas fa-check"></i></button>
                                     </form>
                                 </div>
                             </div>
@@ -94,15 +94,14 @@
                                     <div style="margin-left:auto; display:flex;">
                                         <form action="todoDetail.php?id=<?php echo $id_todolists ?>" method="post">
                                             <input type="hidden" name="delete" value="<?php echo $task['id_task']; ?>" />
-                                            <button type="submit"><i class="fas fa-trash"></i></button>
+                                            <button type="submit" onclick=" confirm('Are you sure, that you want to delete this task?')"><i class="fas fa-trash"></i></button>
                                         </form>
                                     </div>
                                 </div>
                         <?php }
                     }} else{ ?>
-                        <h3>Nemáte žiaden task, musíte si nejaký vytvoriť</h3>
+                        <h3>Zero tasks in your potaToDo. Add something</h3>
                         <ul class="actions">
-                            <li> <p>Zero potatoes. <a href="#todos">Add something</a></p> </li>
                         </ul>
                     <?php }?>
 
